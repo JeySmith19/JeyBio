@@ -74,25 +74,59 @@
           <p class="bio">Desde Aguaytía al Perú, carnívoras para coleccionistas y amantes de lo exótico.</p>
         </div>
       </div>
+
+      <!-- ENLACES -->
       <div class="links">
-        <a class="btn" href="https://wa.me/51925566082?text=Hola%20El%20Vivero%20de%20Jey" target="_blank">
+        <!-- WhatsApp (formato más compatible) -->
+        <a class="btn out"
+           href="https://api.whatsapp.com/send?phone=51925566082&text=Hola%20El%20Vivero%20de%20Jey"
+           rel="noopener noreferrer">
           <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" class="icon-img"/>
           Contacto WhatsApp
         </a>
-        <a class="btn" href="https://www.facebook.com/share/1CeuDCr6Cb/?mibextid=wwXIfr" target="_blank">
+
+        <!-- Facebook (si tienes URL directa de tu página, colócala aquí) -->
+        <a class="btn out"
+           href="https://www.facebook.com/share/1CeuDCr6Cb/?mibextid=wwXIfr"
+           rel="noopener noreferrer">
           <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" class="icon-img"/>
           Página de Facebook
         </a>
-        <a class="btn" href="https://chat.whatsapp.com/I1ZIrowrdTeBomRNDOFCRK?mode=ac_t" target="_blank">
+
+        <!-- Grupo de WhatsApp -->
+        <a class="btn out"
+           href="https://chat.whatsapp.com/I1ZIrowrdTeBomRNDOFCRK?mode=ac_t"
+           rel="noopener noreferrer">
           <img src="https://cdn-icons-png.flaticon.com/512/1256/1256650.png" alt="Grupo" class="icon-img"/>
           Grupo de WhatsApp
         </a>
       </div>
+
       <div class="footer">
         <span>© 2025 El Vivero de Jey</span>
         <span>Consigue tu carnívora con nosotros 🌱</span>
       </div>
     </section>
   </main>
+
+  <!-- Fallback para navegadores en-app (TikTok/IG/FB) -->
+  <script>
+    (function () {
+      const isInApp = /TikTok|Instagram|FBAN|FBAV/i.test(navigator.userAgent);
+      if (!isInApp) return;
+
+      document.querySelectorAll('a.out').forEach(a => {
+        a.addEventListener('click', function (e) {
+          e.preventDefault();
+          const url = this.getAttribute('href');
+          try {
+            window.top.location.href = url; // intenta salir del webview
+          } catch (_) {
+            window.location.href = url;    // fallback básico
+          }
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
